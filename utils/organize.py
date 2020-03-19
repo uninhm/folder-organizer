@@ -6,11 +6,11 @@ from pathlib import Path
 
 class App:
     def __init__(self):
-        with open('folder', 'r') as f:
+        with open('../resources/folder', 'r') as f:
             self.folder = Path(f.read())
             f.close()
 
-        with open('data.json', 'r') as f:
+        with open('../resources/data.json', 'r') as f:
             self.data = json.load(f)
             f.close()
 
