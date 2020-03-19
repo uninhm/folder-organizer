@@ -25,6 +25,7 @@ class Ui_Dialog(object):
         self.label_2.setObjectName("label_2")
         self.extEdit = QtWidgets.QLineEdit(Dialog)
         self.extEdit.setGeometry(QtCore.QRect(10, 80, 161, 20))
+        self.extEdit.setToolTip("")
         self.extEdit.setObjectName("extEdit")
         self.cancelButton = QtWidgets.QPushButton(Dialog)
         self.cancelButton.setGeometry(QtCore.QRect(10, 110, 75, 23))
@@ -42,7 +43,9 @@ class Ui_Dialog(object):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "New"))
         self.label.setText(_translate("Dialog", "Name:"))
+        self.nameEdit.setPlaceholderText(_translate("Dialog", "Example: Installers"))
         self.label_2.setText(_translate("Dialog", "Extensions (separated by ;)"))
+        self.extEdit.setPlaceholderText(_translate("Dialog", "Example: exe; msi;"))
         self.cancelButton.setText(_translate("Dialog", "Calcel"))
         self.acceptButton.setText(_translate("Dialog", "Accept"))
 
