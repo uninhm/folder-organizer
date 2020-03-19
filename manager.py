@@ -3,7 +3,7 @@ from interfaces.new_ui import Ui_Dialog
 from interfaces.folder_ui import Ui_Dialog as Ui_Folder
 import json
 import sys
-from organize import App
+from utils.organize import App
 
 class FolderWindow(QtWidgets.QDialog, Ui_Folder):
 	def __init__(self):
@@ -13,12 +13,12 @@ class FolderWindow(QtWidgets.QDialog, Ui_Folder):
 		self.cancelButton.clicked.connect(self.hide)
 		self.acceptButton.clicked.connect(self.accept)
 
-		with open("folder", 'r') as file:
+		with open("resources\\folder", 'r') as file:
 			self.lineEdit.setText(file.read())
 			file.close()
 
 	def accept(self):
-		with open("folder", 'w') as file:
+		with open("resources\\folder", 'w') as file:
 			file.write(self.lineEdit.text())
 			file.close()
 		self.hide()
@@ -97,7 +97,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 		App()
 
 	def get_info(self):
-		with open("data.json", 'r') as file:
+		with open("resources\\data.json", 'r') as file:
 			self.data = json.load(file)
 			self.tree.clear()
 			for i in range(len(self.data)):
@@ -109,7 +109,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 			file.close()
 
 	def set_info(self):
-		with open("data.json", 'w') as file:
+		with open("resources\\data.json", 'w') as file:
 			file.write(json.dumps(self.data))
 			file.close()
 
