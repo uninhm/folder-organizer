@@ -3,7 +3,7 @@ from new_ui import Ui_Dialog
 from folder_ui import Ui_Dialog as Ui_Folder
 import json
 import sys
-import subprocess as sp
+from manager import App
 
 class FolderWindow(QtWidgets.QDialog, Ui_Folder):
 	def __init__(self):
@@ -94,7 +94,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 		self.set.show()
 
 	def start_program(self):
-		sp.run('python manager.py')
+		App()
 
 	def get_info(self):
 		with open("data.json", 'r') as file:

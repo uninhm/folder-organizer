@@ -30,4 +30,5 @@ class App:
                             move(folder / file, folder / f'{i["name"]}/{file}')
                         break
 
-App()
+if __name__ == '__main__':
+    App()

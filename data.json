@@ -1,1 +1,1 @@
-[{"name": "Fotos", "ext": ["jpg", "png", "jpeg"]}]
+[{"name": "Fotos", "ext": ["jpg", "png", "jpeg"]}, {"name": "Comprimidos", "ext": ["zip", "nz"]}, {"name": "Documentos", "ext": ["pdf", "doc", "docx"]}, {"name": "Instaladores", "ext": ["exe"]}]
