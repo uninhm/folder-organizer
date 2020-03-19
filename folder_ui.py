@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'new.ui'
+# Form implementation generated from reading ui file 'folder.ui'
 #
 # Created by: PyQt5 UI code generator 5.14.1
 #
@@ -13,37 +13,31 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(182, 141)
+        Dialog.resize(190, 91)
+        self.gridLayout = QtWidgets.QGridLayout(Dialog)
+        self.gridLayout.setObjectName("gridLayout")
         self.label = QtWidgets.QLabel(Dialog)
-        self.label.setGeometry(QtCore.QRect(10, 10, 47, 13))
         self.label.setObjectName("label")
-        self.nameEdit = QtWidgets.QLineEdit(Dialog)
-        self.nameEdit.setGeometry(QtCore.QRect(10, 30, 161, 20))
-        self.nameEdit.setObjectName("nameEdit")
-        self.label_2 = QtWidgets.QLabel(Dialog)
-        self.label_2.setGeometry(QtCore.QRect(10, 60, 171, 16))
-        self.label_2.setObjectName("label_2")
-        self.extEdit = QtWidgets.QLineEdit(Dialog)
-        self.extEdit.setGeometry(QtCore.QRect(10, 80, 161, 20))
-        self.extEdit.setObjectName("extEdit")
+        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
+        self.lineEdit = QtWidgets.QLineEdit(Dialog)
+        self.lineEdit.setObjectName("lineEdit")
+        self.gridLayout.addWidget(self.lineEdit, 1, 0, 1, 2)
         self.cancelButton = QtWidgets.QPushButton(Dialog)
-        self.cancelButton.setGeometry(QtCore.QRect(10, 110, 75, 23))
         self.cancelButton.setAutoDefault(False)
         self.cancelButton.setObjectName("cancelButton")
+        self.gridLayout.addWidget(self.cancelButton, 2, 0, 1, 1)
         self.acceptButton = QtWidgets.QPushButton(Dialog)
-        self.acceptButton.setGeometry(QtCore.QRect(100, 110, 75, 23))
-        self.acceptButton.setAutoDefault(False)
         self.acceptButton.setObjectName("acceptButton")
+        self.gridLayout.addWidget(self.acceptButton, 2, 1, 1, 1)
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "New"))
-        self.label.setText(_translate("Dialog", "Name:"))
-        self.label_2.setText(_translate("Dialog", "Extensions (separated by ;)"))
-        self.cancelButton.setText(_translate("Dialog", "Calcel"))
+        Dialog.setWindowTitle(_translate("Dialog", "Set Folder"))
+        self.label.setText(_translate("Dialog", "Folder:"))
+        self.cancelButton.setText(_translate("Dialog", "Cancel"))
         self.acceptButton.setText(_translate("Dialog", "Accept"))
 
 

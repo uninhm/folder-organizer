@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Nombre:</string>
+    <string>Name:</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="nameEdit">
@@ -46,7 +46,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Extensions (separated by comma)</string>
+    <string>Extensions (separated by ;)</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="extEdit">
