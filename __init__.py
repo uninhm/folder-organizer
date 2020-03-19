@@ -59,6 +59,10 @@ class SecondWindow(QtWidgets.QDialog, Ui_Dialog):
 			except TypeError:
 				self.mainw.data[self.id]['ext'] = self.extEdit.text().replace(' ', '').split(';')
 
+			self.mainw.set_info()
+			self.mainw.get_info()
+			self.hide()
+
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 	def __init__(self):
