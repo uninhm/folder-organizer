@@ -43,22 +43,14 @@ class SecondWindow(QtWidgets.QDialog, Ui_Dialog):
 
 	def accept(self):
 		if self.mode == 'new':
-			try:
-				self.mainw.data.append({'name': self.nameEdit.text(), 'ext': filter(self.extEdit.text().replace(' ', '').split(';'), lambda x: x != '')})
-			except TypeError:
-				self.mainw.data.append({'name': self.nameEdit.text(), 'ext': self.extEdit.text().replace(' ', '').split(';')})
-
+			self.mainw.data.append({'name': self.nameEdit.text(), 'ext': list(filter(lambda x: x != '' and x != ' ', self.extEdit.text().replace(' ', '').split(';')))})
 			self.mainw.set_info()
 			self.mainw.get_info()
 			self.hide()
 
 		elif self.mode == 'edit':
 			self.mainw.data[self.id]['name'] = self.nameEdit.text()
-			try:
-				self.mainw.data[self.id]['ext'] = filter(self.extEdit.text().replace(' ', '').split(';'), lambda x: x != '')
-			except TypeError:
-				self.mainw.data[self.id]['ext'] = self.extEdit.text().replace(' ', '').split(';')
-
+			self.mainw.data[self.id]['ext'] = list(filter(lambda x: x != '' and x != ' ', self.extEdit.text().replace(' ', '').split(';')))
 			self.mainw.set_info()
 			self.mainw.get_info()
 			self.hide()
