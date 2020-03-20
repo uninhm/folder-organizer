@@ -13,12 +13,12 @@ class FolderWindow(QtWidgets.QDialog, Ui_Folder):
 		self.cancelButton.clicked.connect(self.hide)
 		self.acceptButton.clicked.connect(self.accept)
 
-		with open("resources\\folder", 'r') as file:
+		with open("resources/folder", 'r') as file:
 			self.lineEdit.setText(file.read())
 			file.close()
 
 	def accept(self):
-		with open("resources\\folder", 'w') as file:
+		with open("resources/folder", 'w') as file:
 			file.write(self.lineEdit.text())
 			file.close()
 		self.hide()
@@ -97,7 +97,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 		App()
 
 	def get_info(self):
-		with open("resources\\data.json", 'r') as file:
+		with open("resources/data.json", 'r') as file:
 			self.data = json.load(file)
 			self.tree.clear()
 			for i in range(len(self.data)):
@@ -109,7 +109,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 			file.close()
 
 	def set_info(self):
-		with open("resources\\data.json", 'w') as file:
+		with open("resources/data.json", 'w') as file:
 			file.write(json.dumps(self.data))
 			file.close()
 

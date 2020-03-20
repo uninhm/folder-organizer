@@ -3,14 +3,17 @@ import json
 from time import sleep
 from shutil import move
 from pathlib import Path
+import os.path
+
+path =  os.path.dirname(__file__)
 
 class App:
     def __init__(self):
-        with open('folder', 'r') as f:
+        with open(os.path.dirname(path) + '\\resources\\folder', 'r') as f:
             self.folder = Path(f.read())
             f.close()
 
-        with open('data.json', 'r') as f:
+        with open(os.path.dirname(path) +'\\resources\\data.json', 'r') as f:
             self.data = json.load(f)
             f.close()
 

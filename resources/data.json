@@ -1,1 +1,1 @@
-[{"name": "Fotos", "ext": ["jpg", "png", "jpeg"]}, {"name": "Comprimidos", "ext": ["zip", "nz"]}, {"name": "Documentos", "ext": ["pdf", "doc", "docx"]}, {"name": "Instaladores", "ext": ["exe"]}]
+[{"name": "Fotos", "ext": ["png", "jpg", "jpeg"]}, {"name": "Python", "ext": ["py", "pyw"]}, {"name": "Documentos", "ext": ["doc", "docx", "pdf"]}, {"name": "Comprimidos", "ext": ["zip", "rar"]}, {"name": "prueba", "ext": ["mp4"]}, {"name": "aplicacion-android", "ext": ["apk"]}]
