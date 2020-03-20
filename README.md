@@ -1,4 +1,4 @@
-# download-manager
+# Download Manager
 
 A simple open-source download manager
 
