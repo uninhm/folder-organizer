@@ -4,6 +4,8 @@ from interfaces.folder_ui import Ui_Dialog as Ui_Folder
 import json
 import sys
 from utils.organize import App
+import subprocess as sp
+import multiprocessing
 
 class FolderWindow(QtWidgets.QDialog, Ui_Folder):
 	def __init__(self):
@@ -61,6 +63,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 		QtWidgets.QMainWindow.__init__(self)
 		self.setupUi(self)
 
+		self.organize_app = App()
+
 		self.tree.setColumnWidth(0, 0)
 
 		self.actionNewFilter.triggered.connect(self.new)
@@ -69,6 +73,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 		self.actionSetFolder.triggered.connect(self.set_folder)
 		self.actionStartProgram.triggered.connect(self.start_program)
+		self.actionStopProgram.triggered.connect(self.stop_program)
 
 		self.actionExit.triggered.connect(sys.exit)
 
@@ -93,8 +98,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 		self.set = FolderWindow()
 		self.set.show()
 
+	def stop_program(self):
+		try:
+			self.main_thread.terminate()
+		except AttributeError:
+			pass
+
 	def start_program(self):
-		App()
+		self.stop_program()
+		self.main_thread = multiprocessing.Process(target=self.organize_app.loop)
+		self.main_thread.start()
 
 	def get_info(self):
 		with open("resources/data.json", 'r') as file:

@@ -3,20 +3,24 @@ import json
 from time import sleep
 from shutil import move
 from pathlib import Path
+import sys
 
 class App:
 	def __init__(self):
-		with open('../resources/folder', 'r') as f:
+		with open('resources/folder', 'r') as f:
 			a = f.read()
 			self.folder = Path(a) if a != '' else ''
 			f.close()
 
-		with open('../resources/data.json', 'r') as f:
+		with open('resources/data.json', 'r') as f:
 			self.data = json.load(f)
 			f.close()
 
-		if self.folder != '':
-			self.organize(self.folder)
+	def loop(self):
+		while True:
+			if self.folder != '':
+				self.organize(self.folder)
+			sleep(5)
 
 	def organize(self, folder):
 		files = os.listdir(folder)
