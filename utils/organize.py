@@ -3,35 +3,34 @@ import json
 from time import sleep
 from shutil import move
 from pathlib import Path
-import os.path
-
-path =  os.path.dirname(__file__)
 
 class App:
-    def __init__(self):
-        with open(os.path.dirname(path) + '\\resources\\folder', 'r') as f:
-            self.folder = Path(f.read())
-            f.close()
+	def __init__(self):
+		with open('../resources/folder', 'r') as f:
+			a = f.read()
+			self.folder = Path(a) if a != '' else ''
+			f.close()
 
-        with open(os.path.dirname(path) +'\\resources\\data.json', 'r') as f:
-            self.data = json.load(f)
-            f.close()
+		with open('../resources/data.json', 'r') as f:
+			self.data = json.load(f)
+			f.close()
 
-        self.organize(self.folder)
+		if self.folder != '':
+			self.organize(self.folder)
 
-    def organize(self, folder):
-        files = os.listdir(folder)
-        if len(files) != 0:
-            for file in files:
-                ex = file.split('.')[-1]
-                for i in self.data:
-                    if ex in i['ext']:
-                        try:
-                            move(folder / file, folder / f'{i["name"]}/{file}')
-                        except FileNotFoundError:
-                            os.mkdir(folder / i['name'])
-                            move(folder / file, folder / f'{i["name"]}/{file}')
-                        break
+	def organize(self, folder):
+		files = os.listdir(folder)
+		if len(files) != 0:
+			for file in files:
+				ex = file.split('.')[-1]
+				for i in self.data:
+					if ex in i['ext']:
+						try:
+							move(folder / file, folder / f'{i["name"]}/{file}')
+						except FileNotFoundError:
+							os.mkdir(folder / i['name'])
+							move(folder / file, folder / f'{i["name"]}/{file}')
+						break
 
 if __name__ == '__main__':
-    App()
+	App()
