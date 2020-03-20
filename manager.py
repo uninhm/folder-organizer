@@ -6,6 +6,7 @@ import sys
 from utils.organize import App
 import subprocess as sp
 import multiprocessing
+from PyQt5.QtWidgets import QMessageBox
 
 class FolderWindow(QtWidgets.QDialog, Ui_Folder):
 	def __init__(self):
@@ -75,9 +76,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 		self.actionStartProgram.triggered.connect(self.start_program)
 		self.actionStopProgram.triggered.connect(self.stop_program)
 
+		self.actionDestroy.triggered.connect(self.confirm_destroy)
 		self.actionExit.triggered.connect(self.hide)
 
 		self.get_info()
+
+	def confirm_destroy(self):
+		q = QMessageBox.question(self, 'Destroy program', "Are you sure?", QMessageBox.Yes | QMessageBox.No)
+		if q == QMessageBox.Yes:
+			self.stop_program()
+			sys.exit()
+
+	def closeEvent(self, event):
+		self.hide()
 
 	def new(self):
 		self.new = SecondWindow(self, 'new')

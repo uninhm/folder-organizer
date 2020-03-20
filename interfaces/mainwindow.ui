@@ -63,6 +63,7 @@
     <addaction name="actionStartProgram"/>
     <addaction name="actionStopProgram"/>
     <addaction name="separator"/>
+    <addaction name="actionDestroy"/>
     <addaction name="actionExit"/>
    </widget>
    <addaction name="menu"/>
@@ -105,6 +106,11 @@
   <action name="actionStopProgram">
    <property name="text">
     <string>Stop program</string>
+   </property>
+  </action>
+  <action name="actionDestroy">
+   <property name="text">
+    <string>Destroy</string>
    </property>
   </action>
  </widget>

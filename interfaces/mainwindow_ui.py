@@ -46,6 +46,8 @@ class Ui_MainWindow(object):
         self.actionSetFolder.setObjectName("actionSetFolder")
         self.actionStopProgram = QtWidgets.QAction(MainWindow)
         self.actionStopProgram.setObjectName("actionStopProgram")
+        self.actionDestroy = QtWidgets.QAction(MainWindow)
+        self.actionDestroy.setObjectName("actionDestroy")
         self.menu.addAction(self.actionNewFilter)
         self.menu.addAction(self.actionEditFilter)
         self.menu.addAction(self.actionDeleteFilter)
@@ -54,6 +56,7 @@ class Ui_MainWindow(object):
         self.menu.addAction(self.actionStartProgram)
         self.menu.addAction(self.actionStopProgram)
         self.menu.addSeparator()
+        self.menu.addAction(self.actionDestroy)
         self.menu.addAction(self.actionExit)
         self.menubar.addAction(self.menu.menuAction())
 
@@ -75,6 +78,7 @@ class Ui_MainWindow(object):
         self.actionDeleteFilter.setText(_translate("MainWindow", "Delete filter"))
         self.actionSetFolder.setText(_translate("MainWindow", "Set downloads folder"))
         self.actionStopProgram.setText(_translate("MainWindow", "Stop program"))
+        self.actionDestroy.setText(_translate("MainWindow", "Destroy"))
 
 
 if __name__ == "__main__":
