@@ -75,7 +75,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 		self.actionStartProgram.triggered.connect(self.start_program)
 		self.actionStopProgram.triggered.connect(self.stop_program)
 
-		self.actionExit.triggered.connect(sys.exit)
+		self.actionExit.triggered.connect(self.hide)
 
 		self.get_info()
 
@@ -129,5 +129,26 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 if __name__ == '__main__':
 	app = QtWidgets.QApplication([])
 	window = MainWindow()
+
+	app.setQuitOnLastWindowClosed(False)
+
+	# Create the icon
+	icon = QtGui.QIcon("resources/images/icono.png")
+
+	# Create the tray
+	tray = QtWidgets.QSystemTrayIcon()
+	tray.setIcon(icon)
+	tray.setVisible(True)
+
+	# Create the menu
+	menu = QtWidgets.QMenu()
+	action = QtWidgets.QAction("Open")
+	action.triggered.connect(window.show)
+	menu.addAction(action)
+
+	# Add the menu to the tray
+	tray.setContextMenu(menu)
+
 	window.show()
+
 	sys.exit(app.exec_())
