@@ -4,7 +4,6 @@ from interfaces.folder_ui import Ui_Dialog as Ui_Folder
 import json
 import sys
 from utils.organize import App
-import subprocess as sp
 import multiprocessing
 from PyQt5.QtWidgets import QMessageBox
 
@@ -137,7 +136,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 			file.write(json.dumps(self.data))
 			file.close()
 
-if __name__ == '__main__':
+def main():
 	app = QtWidgets.QApplication([])
 	window = MainWindow()
 
@@ -163,3 +162,6 @@ if __name__ == '__main__':
 	window.show()
 
 	sys.exit(app.exec_())
+
+if __name__ == '__main__':
+	main()
