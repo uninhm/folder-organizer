@@ -5,6 +5,10 @@ import json
 import sys
 from utils.organize import App
 
+# agregue esto para que funcione
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
+
 class FolderWindow(QtWidgets.QDialog, Ui_Folder):
 	def __init__(self):
 		QtWidgets.QDialog.__init__(self)
@@ -115,6 +119,26 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 if __name__ == '__main__':
 	app = QtWidgets.QApplication([])
+
+
+	app.setQuitOnLastWindowClosed(False)
+
+	# Create the icon
+	icon = QIcon("resources\\images\\icono.png")
+
+	# Create the tray
+	tray = QSystemTrayIcon()
+	tray.setIcon(icon)
+	tray.setVisible(True)
+
+	# Create the menu
+	menu = QMenu()
+	action = QAction("A menu item")
+	menu.addAction(action)
+
+	# Add the menu to the tray
+	tray.setContextMenu(menu)
+
 	window = MainWindow()
 	window.show()
 	sys.exit(app.exec_())
