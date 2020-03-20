@@ -5,7 +5,7 @@ import json
 import sys
 from utils.organize import App
 import multiprocessing
-from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtWidgets import QMessageBox, QFileDialog
 
 class FolderWindow(QtWidgets.QDialog, Ui_Folder):
 	def __init__(self):
@@ -14,6 +14,7 @@ class FolderWindow(QtWidgets.QDialog, Ui_Folder):
 
 		self.cancelButton.clicked.connect(self.hide)
 		self.acceptButton.clicked.connect(self.accept)
+		self.btn_Browse.clicked.connect(self.browse)
 
 		with open("resources/folder", 'r') as file:
 			self.lineEdit.setText(file.read())
@@ -24,6 +25,12 @@ class FolderWindow(QtWidgets.QDialog, Ui_Folder):
 			file.write(self.lineEdit.text())
 			file.close()
 		self.hide()
+
+	def browse(self):
+		fileName = QFileDialog.getExistingDirectory(self, 'Select directory')
+		if fileName:
+			self.lineEdit.setText(fileName)
+
 
 class SecondWindow(QtWidgets.QDialog, Ui_Dialog):
 	def __init__(self, mainw, mode, c=''):
