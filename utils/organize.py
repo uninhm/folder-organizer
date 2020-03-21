@@ -7,12 +7,14 @@ import sys
 
 class App:
 	def __init__(self):
-		with open('resources/folder', 'r') as f:
+		self.path_folder = 'resources/folder'
+		self.path_json = 'resources/data.json'
+		with open(self.path_folder, 'r') as f:
 			a = f.read()
 			self.folder = Path(a) if a != '' else ''
 			f.close()
 
-		with open('resources/data.json', 'r') as f:
+		with open(self.path_json, 'r') as f:
 			self.data = json.load(f)
 			f.close()
 
