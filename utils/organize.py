@@ -6,13 +6,15 @@ from pathlib import Path
 import sys
 
 class App:
+	folder_path = Path('resources/folder')
+	data_path = Path('resources/data.json')
 	def __init__(self):
-		with open('resources/folder', 'r') as f:
+		with open(self.folder_path, 'r') as f:
 			a = f.read()
 			self.folder = Path(a) if a != '' else ''
 			f.close()
 
-		with open('resources/data.json', 'r') as f:
+		with open(self.data_path, 'r') as f:
 			self.data = json.load(f)
 			f.close()
 

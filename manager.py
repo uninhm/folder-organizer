@@ -6,8 +6,11 @@ import sys
 from utils.organize import App
 import multiprocessing
 from PyQt5.QtWidgets import QMessageBox
+import py_resources
+from pathlib import Path
 
 class FolderWindow(QtWidgets.QDialog, Ui_Folder):
+	folder_path = Path('resources/folder')
 	def __init__(self):
 		QtWidgets.QDialog.__init__(self)
 		self.setupUi(self)
@@ -15,12 +18,12 @@ class FolderWindow(QtWidgets.QDialog, Ui_Folder):
 		self.cancelButton.clicked.connect(self.hide)
 		self.acceptButton.clicked.connect(self.accept)
 
-		with open("resources/folder", 'r') as file:
+		with open(self.folder_path, 'r') as file:
 			self.lineEdit.setText(file.read())
 			file.close()
 
 	def accept(self):
-		with open("resources/folder", 'w') as file:
+		with open(self.folder_path, 'w') as file:
 			file.write(self.lineEdit.text())
 			file.close()
 		self.hide()
@@ -33,6 +36,8 @@ class SecondWindow(QtWidgets.QDialog, Ui_Dialog):
 		self.mode = mode
 		self.mainw = mainw
 		self.id = c
+
+		self.mainw.stop_program()
 
 		self.cancelButton.clicked.connect(self.hide)
 		self.acceptButton.clicked.connect(self.accept)
@@ -59,6 +64,7 @@ class SecondWindow(QtWidgets.QDialog, Ui_Dialog):
 
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
+	data_path = Path('resources/data.json')
 	def __init__(self):
 		QtWidgets.QMainWindow.__init__(self)
 		self.setupUi(self)
@@ -120,7 +126,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 		self.main_thread.start()
 
 	def get_info(self):
-		with open("resources/data.json", 'r') as file:
+		with open(self.data_path, 'r') as file:
 			self.data = json.load(file)
 			self.tree.clear()
 			for i in range(len(self.data)):
@@ -132,7 +138,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 			file.close()
 
 	def set_info(self):
-		with open("resources/data.json", 'w') as file:
+		with open(self.data_path, 'w') as file:
 			file.write(json.dumps(self.data))
 			file.close()
 
@@ -143,7 +149,7 @@ def main():
 	app.setQuitOnLastWindowClosed(False)
 
 	# Create the icon
-	icon = QtGui.QIcon("resources/images/icono.png")
+	icon = QtGui.QIcon(":/images/icono")
 
 	# Create the tray
 	tray = QtWidgets.QSystemTrayIcon()
