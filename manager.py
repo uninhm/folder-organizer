@@ -19,6 +19,7 @@ class FolderWindow(QtWidgets.QDialog):
 
 		self.cancelButton.clicked.connect(self.hide)
 		self.acceptButton.clicked.connect(self.accept)
+		self.btn_Browse.clicked.connect(self.browse)
 
 		with open(self.folder_path, 'r') as file:
 			self.lineEdit.setText(file.read())
@@ -29,6 +30,11 @@ class FolderWindow(QtWidgets.QDialog):
 			file.write(self.lineEdit.text())
 			file.close()
 		self.hide()
+
+	def browse(self):
+		fileName = QtWidgets.QFileDialog.getExistingDirectory(self, 'Select directory')
+		if fileName:
+			self.lineEdit.setText(fileName)
 
 class SecondWindow(QtWidgets.QDialog):
 	def __init__(self, mainw, mode, c=''):
