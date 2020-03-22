@@ -1,19 +1,21 @@
-from interfaces.mainwindow_ui import *
-from interfaces.new_ui import Ui_Dialog
-from interfaces.folder_ui import Ui_Dialog as Ui_Folder
+# from interfaces.mainwindow_ui import *
+# from interfaces.new_ui import Ui_Dialog
+# from interfaces.folder_ui import Ui_Dialog as Ui_Folder
 import json
 import sys
 from utils.organize import App
 import multiprocessing
+from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtWidgets import QMessageBox
+from PyQt5 import uic
 import py_resources
-from pathlib import Path
+from constants import *
 
-class FolderWindow(QtWidgets.QDialog, Ui_Folder):
+class FolderWindow(QtWidgets.QDialog):
 	folder_path = Path('resources/folder')
 	def __init__(self):
 		QtWidgets.QDialog.__init__(self)
-		self.setupUi(self)
+		uic.loadUi(interfaces / 'folder.ui', self)
 
 		self.cancelButton.clicked.connect(self.hide)
 		self.acceptButton.clicked.connect(self.accept)
@@ -28,10 +30,10 @@ class FolderWindow(QtWidgets.QDialog, Ui_Folder):
 			file.close()
 		self.hide()
 
-class SecondWindow(QtWidgets.QDialog, Ui_Dialog):
+class SecondWindow(QtWidgets.QDialog):
 	def __init__(self, mainw, mode, c=''):
 		QtWidgets.QDialog.__init__(self)
-		self.setupUi(self)
+		uic.loadUi(interfaces / 'new.ui', self)
 
 		self.mode = mode
 		self.mainw = mainw
@@ -63,11 +65,11 @@ class SecondWindow(QtWidgets.QDialog, Ui_Dialog):
 			self.hide()
 
 
-class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
+class MainWindow(QtWidgets.QMainWindow):
 	data_path = Path('resources/data.json')
 	def __init__(self):
 		QtWidgets.QMainWindow.__init__(self)
-		self.setupUi(self)
+		uic.loadUi(interfaces / 'mainwindow.ui', self)
 
 		self.organize_app = App()
 
