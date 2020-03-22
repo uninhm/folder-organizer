@@ -1,4 +1,4 @@
-from manager import *
+from organizer import *
 
 if __name__ == '__main__':
 	main()
